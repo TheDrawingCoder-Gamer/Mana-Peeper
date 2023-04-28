@@ -1,0 +1,5 @@
+{
+    "manavisualizer.mana_display.amount": "%s Mana",
+    "manavisualizer.mana_display.percentage": "%s%% of a Mana Pool",
+    "manavisualizer.mana_display.capacity": "%s / %s (%s%%)"
+}
