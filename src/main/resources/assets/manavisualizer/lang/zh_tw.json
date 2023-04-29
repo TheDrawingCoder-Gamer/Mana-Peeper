@@ -1,0 +1,5 @@
+{
+    "manavisualizer.mana_display.amount": "%s 魔力",
+    "manavisualizer.mana_display.percentage": "%s%% 的魔力池",
+    "manavisualizer.mana_display.capacity": "%s / %s (%s%%)"
+}
