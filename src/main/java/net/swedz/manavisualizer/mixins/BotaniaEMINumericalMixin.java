@@ -16,7 +16,7 @@ import java.util.List;
 public abstract class BotaniaEMINumericalMixin extends Widget
 {
 	@Final
-	@Shadow
+	@Shadow(remap = false)
 	private int mana;
 	
 	@Override
