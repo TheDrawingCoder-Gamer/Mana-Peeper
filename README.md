@@ -1,6 +1,6 @@
 # Mana Visualizer
 
-We all know and love Botania, right? The very famous magi- *checks notes* tech mod. However I'm sure you've wondered before "how much mana do I need?" just to look at your pool and compare it with the recipe just for that to give you no explanation. Or maybe you're working on a modpack and would like to compare your numbers with existing recipe numbers without having to open up the recipe jsons (that was me). I have just the solution for you! Mana Visualizer lets you now see numbers for your mana pools, mana storing items, and mana consuming recipes (EMI only, use EMI, it's good, trust).
+We all know and love Botania, right? The very famous magi- *checks notes* tech mod. However I'm sure you've wondered before "how much mana do I need?" just to look at your pool and compare it with the recipe just for that to give you no explanation. Or maybe you're working on a modpack and would like to compare your numbers with existing recipe numbers without having to open up the recipe jsons (that was me). I have just the solution for you! Mana Visualizer lets you now see numbers for your mana pools, mana storing items, and mana consuming recipes (EMI & REI only).
 
 ## Contributing
 
