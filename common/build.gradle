@@ -2,7 +2,7 @@ architectury {
     common(["fabric", "forge"])
 }
 
-
+version = "${project.mod_version}+${project.minecraft_version}-xplat"
 
 repositories {
     maven { url = "https://maven.terraformersmc.com/" }

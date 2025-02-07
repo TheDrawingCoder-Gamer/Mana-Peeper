@@ -37,7 +37,6 @@ allprojects {
 	apply(plugin: "architectury-plugin")
 
 	group = project.maven_group
-	version = "${project.mod_version}+${project.minecraft_version}"
 
 	tasks.withType(JavaCompile).configureEach {
 		it.options.release = 17
