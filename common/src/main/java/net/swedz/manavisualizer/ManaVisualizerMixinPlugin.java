@@ -1,6 +1,6 @@
 package net.swedz.manavisualizer;
 
-import net.fabricmc.loader.api.FabricLoader;
+import net.swedz.manavisualizer.util.Platform;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -20,17 +20,27 @@ public final class ManaVisualizerMixinPlugin implements IMixinConfigPlugin
 	{
 		return null;
 	}
-	
+
+	// You should feel sick. Wash yourself after reading this.
 	@Override
 	public boolean shouldApplyMixin(String targetClassName, String mixinClassName)
 	{
 		if(mixinClassName.equals("net.swedz.manavisualizer.mixins.BotaniaEMINumericalMixin"))
 		{
-			return FabricLoader.getInstance().isModLoaded("emi");
+
+			try {
+				Class.forName("dev.emi.emi.api.widget.Widget");
+			} catch (Throwable e) {
+				return false;
+			}
 		}
 		else if(mixinClassName.equals("net.swedz.manavisualizer.mixins.BotaniaREINumericalMixin"))
 		{
-			return FabricLoader.getInstance().isModLoaded("roughlyenoughitems");
+			try {
+				Class.forName("me.shedaniel.rei.api.client.gui.widgets.Widgets");
+			} catch (Throwable e) {
+				return false;
+			}
 		}
 		return true;
 	}

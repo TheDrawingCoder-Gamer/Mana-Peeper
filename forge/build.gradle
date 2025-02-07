@@ -1,0 +1,109 @@
+plugins {
+    id "com.github.johnrengelman.shadow" version "7.1.2"
+}
+
+architectury {
+    platformSetupLoomIde()
+    forge()
+}
+
+
+loom {
+    forge {
+        mixinConfig "manavisualizer.mixins.json"
+    }
+}
+
+configurations {
+    common
+    shadowCommon
+    compileClasspath.extendsFrom(common)
+    runtimeClasspath.extendsFrom(common)
+    developmentFabric.extendsFrom(common)
+}
+
+repositories {
+    maven { url = "https://maven.terraformersmc.com/" }
+    maven { url = "https://maven.shedaniel.me" }
+    maven { url = 'https://maven.blamejared.com' }
+    maven {
+        name = 'Ladysnake Mods'
+        url = 'https://maven.ladysnake.org/releases'
+    }
+    maven {
+        url "https://jitpack.io" // for step height eam
+    }
+    maven {
+        name = "Modrinth"
+        url = "https://api.modrinth.com/maven" // for "here be no dragons"
+        content {
+            includeGroup "maven.modrinth"
+        }
+    }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "JamiesWhiteShirt"
+                url = uri("https://maven.jamieswhiteshirt.com/libs-release/")
+            }
+        }
+
+        filter {
+            includeGroup("com.jamieswhiteshirt")
+        }
+    }
+}
+
+dependencies {
+    compileOnly("com.google.code.findbugs:jsr305:3.0.2")
+
+    forge("net.minecraftforge:forge:${rootProject.forge_version}")
+
+    modImplementation("vazkii.botania:Botania:${rootProject.botania_version}-FORGE") {
+        exclude(group: "dev.emi", module: "emi")
+        exclude(group: "dev.emi", module: "emi-forge")
+    }
+
+    modRuntimeOnly("me.shedaniel:RoughlyEnoughItems-forge:${rootProject.rei_version}") {
+        exclude(group: "net.fabricmc", module: "fabric-loader")
+    }
+
+    modRuntimeOnly("dev.emi:emi-forge:${rootProject.emi_version}")
+
+    common(project(path: ":common", configuration: "namedElements")) { transitive = false }
+    shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
+}
+
+processResources {
+    inputs.property("version", project.version)
+
+    from(rootProject.file("LICENSE"))
+    exclude(".cache")
+
+    filesMatching("META-INF/mods.toml") {
+        expand("version": project.version)
+    }
+}
+
+shadowJar {
+    exclude "architectury.common.json"
+
+    configurations = [project.configurations.shadowCommon]
+}
+
+remapJar {
+    input.set shadowJar.archiveFile
+    dependsOn shadowJar
+}
+
+sourcesJar {
+    def commonSources = project(":common").sourcesJar
+    dependsOn commonSources
+    from commonSources.archiveFile.map { zipTree(it) }
+}
+
+components.java {
+    withVariantsFromConfiguration(project.configurations.shadowRuntimeElements) {
+        skip()
+    }
+}

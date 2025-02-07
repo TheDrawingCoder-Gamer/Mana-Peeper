@@ -6,7 +6,8 @@
   "name": "Mana Visualizer",
   "description": "Exposes Botania for what it truly is, a number mod.",
   "authors": [
-    "Swedz"
+    "Swedz",
+    "Bulby"
   ],
   "contact": {
     "homepage": "https://swedz.net/",
@@ -19,7 +20,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.swedz.manavisualizer.ManaVisualizer"
+      "net.swedz.manavisualizer.FabricInit"
     ]
   },
   "mixins": [

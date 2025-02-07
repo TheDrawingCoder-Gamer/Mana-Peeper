@@ -1,57 +1,53 @@
 plugins {
-	id 'fabric-loom' version '1.9-SNAPSHOT'
-	id 'maven-publish'
+	id 'architectury-plugin' version '3.4-SNAPSHOT'
+	id 'dev.architectury.loom' version '1.9-SNAPSHOT' apply(false)
+
 }
 
-version = "${project.mod_version}+${project.minecraft_version}"
-group = project.maven_group
-
-repositories {
-	maven { url = "https://api.modrinth.com/maven" }
-	maven { url = "https://maven.terraformersmc.com/" }
-	maven { url = "https://maven.shedaniel.me" }
+architectury {
+	minecraft = project.minecraft_version
 }
 
-dependencies {
-	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings loom.officialMojangMappings()
-	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+subprojects {
+	apply(plugin: "dev.architectury.loom")
 
-	modImplementation "maven.modrinth:botania:${project.botania_version}"
+	loom {
+		silentMojangMappingsLicense()
 
-	modCompileOnly "dev.emi:emi-fabric:${project.emi_version}:api"
-	modRuntimeOnly "dev.emi:emi-fabric:${project.emi_version}"
-
-	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${project.rei_version}"
-	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
-}
-
-base {
-	archivesName = project.archives_base_name
-}
-
-processResources {
-	inputs.property "version", project.version
-
-	filesMatching("fabric.mod.json") {
-		expand "version": project.version
 	}
-}
 
-tasks.withType(JavaCompile).configureEach {
-	it.options.release = 17
-}
-
-java {
-	withSourcesJar()
-
-	sourceCompatibility = JavaVersion.VERSION_17
-	targetCompatibility = JavaVersion.VERSION_17
-}
-
-jar {
-	from("LICENSE") {
-		rename { "${it}_${base.archivesName.get()}"}
+	repositories {
+		maven { url = "https://maven.terraformersmc.com/" }
 	}
+
+	dependencies {
+		minecraft "com.mojang:minecraft:${project.minecraft_version}"
+		mappings loom.officialMojangMappings()
+
+	}
+
+	base {
+		archivesName = project.archives_base_name
+	}
+
+}
+
+allprojects {
+	apply(plugin: "java")
+	apply(plugin: "architectury-plugin")
+
+	group = project.maven_group
+	version = "${project.mod_version}+${project.minecraft_version}"
+
+	tasks.withType(JavaCompile).configureEach {
+		it.options.release = 17
+	}
+
+	java {
+		withSourcesJar()
+
+		sourceCompatibility = JavaVersion.VERSION_17
+		targetCompatibility = JavaVersion.VERSION_17
+	}
+
 }

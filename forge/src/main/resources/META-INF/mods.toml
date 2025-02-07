@@ -1,0 +1,44 @@
+modLoader = "javafml"
+loaderVersion = "[47,)"
+#updateJSONURL=""
+issueTrackerURL = "https://github.com/TheDrawingCoder-Gamer/Mana-Visualizer/issues"
+displayURL = "https://github.com/TheDrawingCoder-Gamer/Mana-Visualizer#readme"
+logoFile = "assets/manavisualizer/icon.png"
+#credits="Thanks for this example mod goes to Java"
+authors = "Swedz, Bulby"
+license = "See GitHub repository for details"
+
+[[mods]]
+modId = "manavisualizer"
+version = "${version}"
+displayName = "Mana Visualizer"
+description = "Reveal Botania for what it always has been, a numbers mod"
+# updateJSONURL = "https://api.modrinth.com/updates/applied-botanics/forge_updates.json"
+
+[[dependencies.manavisualizer]]
+modId = "forge"
+mandatory = true
+versionRange = "[47.1.3,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.manavisualizer]]
+modId = "botania"
+mandatory = true
+versionRange = "*"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.manavisualizer]]
+modId = "emi"
+mandatory = false
+versionRange = "*"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.manavisualizer]]
+modId = "roughlyenoughitems"
+mandatory = false
+versionRange = "*"
+ordering = "AFTER"
+side = "BOTH"
