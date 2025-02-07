@@ -7,13 +7,5 @@ public class ManaVisualizer implements ModInitializer
 	@Override
 	public void onInitialize()
 	{
-		instance = this;
-	}
-	
-	private static ManaVisualizer instance;
-	
-	public static ManaVisualizer getInstance()
-	{
-		return instance;
 	}
 }

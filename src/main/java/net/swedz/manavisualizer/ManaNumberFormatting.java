@@ -1,7 +1,7 @@
 package net.swedz.manavisualizer;
 
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 
 import java.text.DecimalFormat;
 
@@ -40,9 +40,9 @@ public final class ManaNumberFormatting
 		return DECIMAL_FORMAT.format(shortenedMana) + abbreviation;
 	}
 	
-	public static MutableText amount(int mana)
+	public static MutableComponent amount(int mana)
 	{
-		return Text.translatable("manavisualizer.mana_display.amount", numericalDisplay(mana));
+		return Component.translatable("manavisualizer.mana_display.amount", numericalDisplay(mana));
 	}
 	
 	private static String percentageDisplay(int mana, int maxMana)
@@ -50,14 +50,14 @@ public final class ManaNumberFormatting
 		return DECIMAL_FORMAT.format(((double) mana / maxMana) * 100);
 	}
 	
-	public static MutableText percentage(int mana, int maxMana)
+	public static MutableComponent percentage(int mana, int maxMana)
 	{
-		return Text.translatable("manavisualizer.mana_display.percentage", percentageDisplay(mana, maxMana));
+		return Component.translatable("manavisualizer.mana_display.percentage", percentageDisplay(mana, maxMana));
 	}
 	
-	public static MutableText capacity(int mana, int maxMana)
+	public static MutableComponent capacity(int mana, int maxMana)
 	{
-		return Text.translatable(
+		return Component.translatable(
 				"manavisualizer.mana_display.capacity",
 				shortenedNumericalDisplay(mana),
 				shortenedNumericalDisplay(maxMana),

@@ -4,7 +4,7 @@ import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.gui.widgets.Widgets;
 import me.shedaniel.rei.api.common.display.Display;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
 import net.swedz.manavisualizer.ManaNumberFormatting;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -60,9 +60,9 @@ public class BotaniaREINumericalMixin
 		widgets.add(Widgets.createTooltip(
 				new Rectangle(x, y, 101, 4),
 				ManaNumberFormatting.amount(botaniaDisplay.getManaCost())
-						.formatted(Formatting.AQUA),
+						.withStyle(ChatFormatting.AQUA),
 				ManaNumberFormatting.percentage(botaniaDisplay.getManaCost(), ManaPoolBlockEntity.MAX_MANA)
-						.formatted(Formatting.BLUE)));
+						.withStyle(ChatFormatting.BLUE)));
 		
 		callback.setReturnValue(widgets);
 	}

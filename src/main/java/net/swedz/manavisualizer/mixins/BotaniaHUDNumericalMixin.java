@@ -1,10 +1,9 @@
 package net.swedz.manavisualizer.mixins;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.network.chat.Component;
 import net.swedz.manavisualizer.ManaNumberFormatting;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -18,15 +17,15 @@ import java.awt.Color;
 public class BotaniaHUDNumericalMixin
 {
 	@Inject(at = @At(value = "RETURN", shift = At.Shift.BEFORE), method = "drawSimpleManaHUD")
-	private static void drawSimpleManaHUD(DrawContext ctx, int color, int mana, int maxMana, String name, CallbackInfo callback)
+	private static void drawSimpleManaHUD(GuiGraphics ctx, int color, int mana, int maxMana, String name, CallbackInfo callback)
 	{
-		final MinecraftClient mc = MinecraftClient.getInstance();
+		final Minecraft mc = Minecraft.getInstance();
 		
-		Text manaDisplayText = ManaNumberFormatting.capacity(mana, maxMana).formatted(Formatting.AQUA);
+		Component manaDisplayText = ManaNumberFormatting.capacity(mana, maxMana).withStyle(ChatFormatting.AQUA);
 		
-		final int x = mc.getWindow().getScaledWidth() / 2 - mc.textRenderer.getWidth(manaDisplayText) / 2;
-		final int y = mc.getWindow().getScaledHeight() / 2 - 10 - mc.textRenderer.fontHeight;
+		final int x = mc.getWindow().getGuiScaledWidth() / 2 - mc.font.width(manaDisplayText) / 2;
+		final int y = mc.getWindow().getGuiScaledHeight() / 2 - 10 - mc.font.lineHeight;
 
-		ctx.drawText(mc.textRenderer, manaDisplayText, x, y, Color.WHITE.getRGB(), true);
+		ctx.drawString(mc.font, manaDisplayText, x, y, Color.WHITE.getRGB(), true);
 	}
 }

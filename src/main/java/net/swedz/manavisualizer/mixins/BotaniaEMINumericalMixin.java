@@ -1,8 +1,8 @@
 package net.swedz.manavisualizer.mixins;
 
 import dev.emi.emi.api.widget.Widget;
-import net.minecraft.client.gui.tooltip.TooltipComponent;
-import net.minecraft.util.Formatting;
+import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
+import net.minecraft.ChatFormatting;
 import net.swedz.manavisualizer.ManaNumberFormatting;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,13 +20,13 @@ public abstract class BotaniaEMINumericalMixin extends Widget
 	private int mana;
 	
 	@Override
-	public List<TooltipComponent> getTooltip(int mouseX, int mouseY)
+	public List<ClientTooltipComponent> getTooltip(int mouseX, int mouseY)
 	{
 		return List.of(
-				TooltipComponent.of(ManaNumberFormatting.amount(mana)
-						.formatted(Formatting.AQUA).asOrderedText()),
-				TooltipComponent.of(ManaNumberFormatting.percentage(mana, ManaPoolBlockEntity.MAX_MANA)
-						.formatted(Formatting.BLUE).asOrderedText())
+				ClientTooltipComponent.create(ManaNumberFormatting.amount(mana)
+						.withStyle(ChatFormatting.AQUA).getVisualOrderText()),
+				ClientTooltipComponent.create(ManaNumberFormatting.percentage(mana, ManaPoolBlockEntity.MAX_MANA)
+						.withStyle(ChatFormatting.BLUE).getVisualOrderText())
 		);
 	}
 }
