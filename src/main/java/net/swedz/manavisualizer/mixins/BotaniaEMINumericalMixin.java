@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import vazkii.botania.common.block.block_entity.mana.ManaPoolBlockEntity;
-import vazkii.botania.fabric.integration.emi.ManaWidget;
+import vazkii.botania.client.integration.emi.ManaWidget;
 
 import java.util.List;
 

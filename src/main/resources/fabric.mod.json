@@ -27,14 +27,14 @@
   ],
 
   "depends": {
-    "fabricloader": ">=0.14.18",
+    "fabricloader": ">=0.16.10",
     "fabric-api": "*",
-    "minecraft": "~1.19.2",
+    "minecraft": "~1.20.1",
     "java": ">=17",
-    "botania": ">=1.19.2-438-FABRIC"
+    "botania": ">=1.20.1-446-FABRIC"
   },
   "suggests": {
-    "emi": ">=0.7.3+1.19.2",
-    "roughlyenoughitems": ">=9.1.595"
+    "emi": ">=1.1.19+1.20.1+fabric",
+    "roughlyenoughitems": ">=12.1.785"
   }
 }
