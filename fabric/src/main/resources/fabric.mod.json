@@ -1,20 +1,20 @@
 {
   "schemaVersion": 1,
-  "id": "manavisualizer",
+  "id": "manapeeper",
   "version": "${version}",
 
-  "name": "Mana Visualizer",
+  "name": "Mana Peeper",
   "description": "Exposes Botania for what it truly is, a number mod.",
   "authors": [
     "Swedz",
     "Bulby"
   ],
   "contact": {
-    "sources": "https://github.com/TheDrawingCoder-Gamer/Mana-Visualizer"
+    "sources": "https://github.com/TheDrawingCoder-Gamer/Mana-Peeper"
   },
 
   "license": "MIT",
-  "icon": "assets/manavisualizer/icon.png",
+  "icon": "assets/manapeeper/icon.png",
 
   "environment": "*",
   "entrypoints": {
@@ -23,7 +23,7 @@
     ]
   },
   "mixins": [
-    "manavisualizer.mixins.json"
+    "manapeeper.mixins.json"
   ],
 
   "depends": {

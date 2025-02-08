@@ -12,7 +12,7 @@ architectury {
 
 loom {
     forge {
-        mixinConfig "manavisualizer.mixins.json"
+        mixinConfig "manapeeper.mixins.json"
     }
 }
 
